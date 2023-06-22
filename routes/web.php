@@ -47,7 +47,7 @@ Route::middleware([
 });
 
 
-Route::middleware(['auth:sanctum','can:teachers.index'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
     Route::get('teachers/{teacherId}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
     Route::get('teachers/{teacherId}', [TeacherController::class, 'show'])->name('teachers.show');
@@ -87,7 +87,7 @@ Route::resource('groups', GroupController::class)
         'edit' => 'groups.edit',
     ]);
 
-Route::get('/subjects/assign-teacher',[SubjectController::class,'assignTeacher'])->middleware('auth:sanctum','can:subjects.index')->name('subjects.assign-teacher');
+Route::get('/subjects/assign-teacher',[SubjectController::class,'assignTeacher'])->middleware('auth:sanctum')->name('subjects.assign-teacher');
 
 Route::resource('subjects', SubjectController::class)
     ->middleware('auth:sanctum')
